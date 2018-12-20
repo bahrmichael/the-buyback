@@ -1,12 +1,21 @@
 package com.thebuyback.eve.service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 
@@ -26,6 +35,7 @@ import com.thebuyback.eve.repository.CapitalShipRepository;
 import com.thebuyback.eve.repository.ContractRepository;
 import com.thebuyback.eve.repository.TokenRepository;
 import com.thebuyback.eve.repository.TypeBuybackRateRepository;
+import static com.thebuyback.eve.service.ContractUpdater.ORE_TYPE_IDS;
 import static com.thebuyback.eve.web.rest.ContractsResource.THE_BUYBACK;
 
 import org.json.JSONArray;
@@ -35,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
@@ -165,6 +176,8 @@ public class ContractParser implements SchedulingConfigurer {
         Map<Integer, Integer> items;
         boolean declineMailSent;
         boolean approved;
+        double oreValue = 0;
+        double otherValue = 0;
 
         final Optional<Contract> optional = contractRepository.findById(contractId);
         if (optional.isPresent()) {
@@ -202,6 +215,15 @@ public class ContractParser implements SchedulingConfigurer {
                                                                     .getString("name"));
             declineMailSent = false;
             approved = false;
+
+            oreValue = appraisal.getItems()
+                                .stream().filter(item -> ORE_TYPE_IDS.contains(item.getTypeID()))
+                                .mapToDouble(item -> item.getJitaBuyPerUnit() * item.getQuantity() * item.getRate())
+                                .sum();
+            otherValue = appraisal.getItems()
+                                  .stream().filter(item -> !ORE_TYPE_IDS.contains(item.getTypeID()))
+                                  .mapToDouble(item -> item.getJitaBuyPerUnit() * item.getQuantity() * item.getRate())
+                                  .sum();
         }
 
         String status = jsonContract.getString("status");
@@ -221,7 +243,7 @@ public class ContractParser implements SchedulingConfigurer {
         final Contract contract = new Contract(contractId, issuerId, issuerCorporationId, assigneeId, status,
                                                startLocationId, price, reward, items, appraisalLink, buyValue,
                                                sellValue, title, dateIssued, dateCompleted, client[0],
-                                               declineMailSent, approved);
+                                               declineMailSent, approved, oreValue, otherValue);
 
         if (!isAssignedToBraveCollective(assigneeId) && !isFromTheBuyback(issuerCorporationId)) {
             contract.setBuybackPrice(calcBuybackRate(contractId, accessToken));

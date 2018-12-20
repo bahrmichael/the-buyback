@@ -33,6 +33,8 @@ public class Contract {
 
     private boolean declineMailSent;
     private boolean approved;
+    private Double oreValue;
+    private Double otherValue;
     private Double buybackPrice;
 
     public Contract() {
@@ -44,7 +46,8 @@ public class Contract {
                     final String appraisalLink,
                     final double buyValue, final double sellValue, final String title,
                     final Instant dateIssued, final Instant dateCompleted, final String client,
-                    final boolean declineMailSent, final boolean approved) {
+                    final boolean declineMailSent, final boolean approved, final Double oreValue,
+                    final Double otherValue) {
         this.id = id;
         this.issuerId = issuerId;
         this.issuerCorporationId = issuerCorporationId;
@@ -63,6 +66,8 @@ public class Contract {
         this.client = client;
         this.declineMailSent = declineMailSent;
         this.approved = approved;
+        this.oreValue = oreValue;
+        this.otherValue = otherValue;
     }
 
     public Double getBuybackPrice() {
@@ -215,5 +220,21 @@ public class Contract {
 
     public void setReward(final double reward) {
         this.reward = reward;
+    }
+
+    public Double getOreValue() {
+        return oreValue;
+    }
+
+    public void setOreValue(final Double oreValue) {
+        this.oreValue = oreValue;
+    }
+
+    public Double getOtherValue() {
+        return otherValue;
+    }
+
+    public void setOtherValue(final Double otherValue) {
+        this.otherValue = otherValue;
     }
 }

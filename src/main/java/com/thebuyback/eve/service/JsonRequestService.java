@@ -43,7 +43,7 @@ public class JsonRequestService {
     private static final String BODY_TEMPLATE = "{\"recipients\": [{\"recipient_type\": \"character\",\"recipient_id\": %d}, {\"recipient_type\": \"corporation\",\"recipient_id\": 98503372}],\"subject\": \"The Buyback - %s\",\"body\": \"%s\"}";
     private static final long CORPORATION = 98503372L;
     private static final long MAIL_CHAR = 93475128L;
-    private static final String ESI_BASE_URL = "https://esi.tech.ccp.is";
+    private static final String ESI_BASE_URL = "https://esi.evetech.net";
     private static final String BACK_OFF = "backOff";
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final Map<String, String> defaultHeaders;
@@ -189,7 +189,7 @@ public class JsonRequestService {
     }
 
     Optional<JsonNode> getCharacterName(final long characterId) {
-        String url = "https://esi.tech.ccp.is/v2/universe/names/";
+        String url = "https://esi.evetech.net/v2/universe/names/";
         final RequestBodyEntity request = Unirest.post(url).headers(defaultHeaders).body(singletonList(characterId));
         return executeRequest(request, "characterName");
     }

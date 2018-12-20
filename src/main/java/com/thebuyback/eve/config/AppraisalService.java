@@ -93,6 +93,11 @@ public class AppraisalService {
                     .collect(Collectors.joining("\n"));
     }
 
+    public Appraisal getFromAppraisalLink(final String appraisalLink) throws AppraisalFailed {
+        final GetRequest request = Unirest.get(appraisalLink + ".json");
+        return mapToAppraisal(getAppraisal(request), null);
+    }
+
     private Appraisal getFromAppraisalId(final String appraisalId) throws AppraisalFailed {
         final GetRequest request = Unirest.get("http://evepraisal.com/a/" + appraisalId + ".json");
         return mapToAppraisal(getAppraisal(request), null);

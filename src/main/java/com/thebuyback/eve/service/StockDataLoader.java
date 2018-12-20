@@ -361,12 +361,12 @@ public class StockDataLoader {
     private String makeUrl(final String token, int page, final Long target) {
         final List<Long> hubIds = hubRepository.findAll().stream().map(Hub::getId).collect(Collectors.toList());
         if (hubIds.contains(target)) {
-            return "https://esi.tech.ccp.is/v1/markets/structures/" + target
+            return "https://esi.evetech.net/v1/markets/structures/" + target
                    + "/?datasource=tranquility"
                    + "&page=" + page
                    + "&token=" + token;
         } else if (Objects.equals(JITA, target)) {
-            return "https://esi.tech.ccp.is/v1/markets/10000002/orders/?datasource=tranquility&order_type=all&page=" + page;
+            return "https://esi.evetech.net/v1/markets/10000002/orders/?datasource=tranquility&order_type=all&page=" + page;
         } else {
             throw new IllegalArgumentException("Unknown target: " + target);
         }
