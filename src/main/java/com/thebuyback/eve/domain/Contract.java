@@ -36,6 +36,7 @@ public class Contract {
     private Double oreValue;
     private Double otherValue;
     private Double buybackPrice;
+    private boolean acceptedLocation;
 
     public Contract() {
     }
@@ -233,5 +234,13 @@ public class Contract {
 
     public void setOtherValue(final Double otherValue) {
         this.otherValue = otherValue;
+    }
+
+    public void setAcceptedLocation(final boolean acceptedLocation) {
+        this.acceptedLocation = acceptedLocation;
+    }
+
+    public boolean isAcceptedLocation() {
+        return acceptedLocation;
     }
 }

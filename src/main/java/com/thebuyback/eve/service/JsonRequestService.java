@@ -188,6 +188,10 @@ public class JsonRequestService {
         return justGet(String.format("%s/v1/corporations/%d/contracts/%d/items/?token=%s", ESI_BASE_URL, CORPORATION, contractId, accessToken), "corpContractItems");
     }
 
+    Optional<JsonNode> getCorporationInfo(final long corporationId) {
+        return justGet(String.format("%s/v4/corporations/%d/", ESI_BASE_URL, corporationId), null);
+    }
+
     Optional<JsonNode> getCharacterName(final long characterId) {
         String url = "https://esi.evetech.net/v2/universe/names/";
         final RequestBodyEntity request = Unirest.post(url).headers(defaultHeaders).body(singletonList(characterId));
@@ -222,7 +226,7 @@ public class JsonRequestService {
     }
 
     Optional<JsonNode> getStructureInfo(final long structureId, final String accessToken) {
-        String url = String.format("%s/v1/universe/structures/%d/?token=%s", ESI_BASE_URL, structureId, accessToken);
+        String url = String.format("%s/v2/universe/structures/%d/?token=%s", ESI_BASE_URL, structureId, accessToken);
         return justGet(url, null);
     }
 

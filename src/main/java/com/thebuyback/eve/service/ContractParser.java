@@ -229,9 +229,43 @@ public class ContractParser implements SchedulingConfigurer {
             contract.setBuybackPrice(calcBuybackRate(contractId, accessToken));
         }
 
+        contract.setAcceptedLocation(isAcceptedLocation(contract.getStartLocationId(), accessToken));
+
         contractRepository.save(contract);
         log.debug("Saved contract {}.", contractId);
 
+    }
+
+    private boolean isAcceptedLocation(final long locationId, final String accessToken) {
+        if (locationId < 100_000_000L) {
+            // station
+            return true;
+        } else {
+            // structure, e.g. 1_023_729_674_815
+            final Optional<JsonNode> structureInfo = requestService.getStructureInfo(locationId, accessToken);
+            final long ownerId;
+            if (structureInfo.isPresent()) {
+                ownerId = structureInfo.get().getObject().getLong("owner_id");
+            } else {
+                log.warn("Failed to get location infos for structure={}.", locationId);
+                return true;
+            }
+
+            final Optional<JsonNode> corpData = requestService.getCorporationInfo(ownerId);
+            if (corpData.isPresent()) {
+                final JSONObject data = corpData.get().getObject();
+                if (data.has("alliance_id")) {
+                    final long allianceId = data.getLong("alliance_id");
+                    // 99003214 is Brave Collective
+                    return 99003214L == allianceId;
+                } else {
+                    return true;
+                }
+            } else {
+                log.warn("Failed to get corporation infos for corporation {}.", ownerId);
+                return true;
+            }
+        }
     }
 
     private double calcBuybackRate(final long contractId, final String accessToken) {
