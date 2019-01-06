@@ -19,7 +19,7 @@ export class DoctrineStockComponent implements OnInit {
 
     constructor(private http: HttpClient,
                 public router: Router) {
-        this.hubs = [{'systemName': '68FT-6', 'structureType': 'Keepstar', 'id': 1023425394442}];
+        this.hubs = [{'systemName': 'GE-8JV', 'structureType': 'Faction Fort', 'id': 1027847407700}];
         this.selectedHub = this.hubs[0];
     }
 
