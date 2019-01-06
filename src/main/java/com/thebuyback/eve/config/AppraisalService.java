@@ -99,13 +99,13 @@ public class AppraisalService {
     }
 
     private Appraisal getFromAppraisalId(final String appraisalId) throws AppraisalFailed {
-        final GetRequest request = Unirest.get("http://evepraisal.com/a/" + appraisalId + ".json");
+        final GetRequest request = Unirest.get("https://evepraisal.com/a/" + appraisalId + ".json");
         return mapToAppraisal(getAppraisal(request), null);
     }
 
     private Appraisal getFromRaw(String raw) throws AppraisalFailed {
         log.debug("Getting appraisal for '{}'", raw.replace("\n", ";"));
-        final RequestBodyEntity request = Unirest.post("http://evepraisal.com/appraisal.json?market=jita").body(raw);
+        final RequestBodyEntity request = Unirest.post("https://evepraisal.com/appraisal.json?market=jita").body(raw);
         return mapToAppraisal(getAppraisal(request.getHttpRequest()), raw);
     }
 
@@ -143,7 +143,7 @@ public class AppraisalService {
 
         final List<ItemWithQuantity> items = parseItems(appraisalNode.getJSONArray("items"));
         appraisal.setItems(items);
-        appraisal.setLink("http://evepraisal.com/a/" + appraisalNode.getString("id"));
+        appraisal.setLink("https://evepraisal.com/a/" + appraisalNode.getString("id"));
 
         appraisal.setBuybackPrice(getBuybackPrice(items));
         appraisal.setRaw(raw);

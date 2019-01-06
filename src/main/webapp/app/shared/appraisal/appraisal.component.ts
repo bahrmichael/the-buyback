@@ -41,7 +41,7 @@ export class AppraisalComponent implements OnInit {
             if (err.status >= 500) {
                 this.errorMessage = "Our hamsters failed to process your appraisal. Please try again later.";
             } else if (err.status >= 400) {
-                this.errorMessage = "Your appraisal could not be parsed. Please make sure it is a valid evepraisal format. Go to http://evepraisal.com to try it out.";
+                this.errorMessage = "Your appraisal could not be parsed. Please make sure it is a valid evepraisal format. Go to https://evepraisal.com to try it out.";
             }
             this.isLoadingAppraisal = false;
         });
