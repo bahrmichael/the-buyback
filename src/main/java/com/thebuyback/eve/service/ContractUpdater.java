@@ -43,8 +43,8 @@ public class ContractUpdater {
         this.appraisalService = appraisalService;
     }
 
-//    @Async
-//    @Scheduled(fixedDelay = 120000L)
+    @Async
+    @Scheduled(fixedDelay = 120000L)
     public void loadOrePrices() {
         log.info("Started updating contracts.");
         final List<Contract> contracts = contractRepository.findTop50ByOreValueNullAndStatusAndAppraisalLinkNotNull("finished");
