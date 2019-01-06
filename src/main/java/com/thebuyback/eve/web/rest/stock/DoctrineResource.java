@@ -151,6 +151,9 @@ public class DoctrineResource {
                 totalChange += history.get(i).getMaxQuantity() - history.get(i).getMinQuantity();
             }
         }
+        if (days == 0) {
+            return -1;
+        }
         final int changePerDay = totalChange / days;
         if (changePerDay == 0) {
             // will be turned into N/A in the frontend
