@@ -81,7 +81,7 @@ export class ItemStockComponent implements OnInit, AfterViewInit {
                     line: {
                         tension: 0
                     },
-                    point:{
+                    point: {
                         radius: 0
                     }
                 },
@@ -130,7 +130,7 @@ export class ItemStockComponent implements OnInit, AfterViewInit {
                     line: {
                         tension: 0
                     },
-                    point:{
+                    point: {
                         radius: 0
                     }
                 },

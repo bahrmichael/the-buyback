@@ -1,5 +1,7 @@
 package com.thebuyback.eve.web.rest;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.codahale.metrics.annotation.Timed;
 import com.thebuyback.eve.config.AppraisalService;
 import com.thebuyback.eve.domain.Appraisal;
@@ -36,8 +38,9 @@ public class AppraisalResource {
      */
     @PostMapping
     @Timed
-    public ResponseEntity<Appraisal> requestAppraisal(@RequestBody Appraisal appraisal) {
+    public ResponseEntity<Appraisal> requestAppraisal(@RequestBody Appraisal appraisal, HttpServletRequest request) {
         log.debug("REST request to perform an appraisal : {}", appraisal);
+        log.info("Request from {} {} ", request.getRemoteAddr() , request.getRemoteHost());
 
         if (appraisal.getAdditionalRaw() == null || appraisal.getAdditionalRaw().isEmpty()) {
             return ResponseEntity.status(400).build();

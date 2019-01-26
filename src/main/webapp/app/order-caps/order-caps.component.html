@@ -4,7 +4,9 @@
             <h1>Pick a Hull - Supers and Titans</h1>
             <div class="alert alert-danger" *ngIf="initFailed">Failed to load available caps. Did you sign in?</div>
             <div class="row" *ngIf="capConfigs">
-                <jhi-hull-select *ngFor="let capConfig of capConfigs; let i = index" [index]="i + 1" [capConfig]="selectConf(capConfig.typeName)" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
+                <div class="col-md-3" *ngFor="let capConfig of capConfigs">
+                    <jhi-hull-select [capConfig]="selectConf(capConfig.typeName)" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
+                </div>
             </div>
         </div>
         <div *ngIf="pickedHull && !deliveryLocation">
