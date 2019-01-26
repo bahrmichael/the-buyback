@@ -1,13 +1,13 @@
 <div class="row" *ngIf="capsOnContract">
     <div class="col-md-12">
         <h2>Sexy Caps - on contract and demand</h2>
-        <p>We sell all the caps. <span *ngIf="!account"><a routerLink="login">Sign in</a> to order supers and titans.</span> Normal capitals are available from the public contracts in GE. <br/><b>No waiting, just fun!</b></p>
-        <p *ngIf="account"><button class="btn btn-primary" [routerLink]="['/order-caps']">Order an Orca, Super or Titan</button></p>
+        <p>We sell all the caps. <span *ngIf="!account"><a routerLink="login">Sign in</a> to order supers and titans.</span> Normal capitals are available from the public contracts in Impass. <br/><b>No waiting, just fun!</b></p>
+        <p *ngIf="account"><button class="btn btn-primary" [routerLink]="['/order-caps']">Order any Capital, Super or Titan</button></p>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Capital Hull</th>
-                <th>Quantity listed in GE</th>
+                <th>Quantity on contract in Impass</th>
             </tr>
             </thead>
             <tbody>
@@ -17,14 +17,5 @@
             </tr>
             </tbody>
         </table>
-        <p>Caps available by request (7 day lead-time):</p>
-        <ul>
-            <li>Apostle</li>
-            <li>Moros</li>
-            <li>Thanatos</li>
-            <li>Archon</li>
-            <li>Ninazu</li>
-        </ul>
-        <p>Contact Chekman ingame/Slack for price and details.</p>
     </div>
 </div>
