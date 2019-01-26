@@ -3,75 +3,8 @@
         <div *ngIf="!pickedHull">
             <h1>Pick a Hull - Supers and Titans</h1>
             <div class="alert alert-danger" *ngIf="initFailed">Failed to load available caps. Did you sign in?</div>
-            <!--<div class="row" *ngIf="capConfigs">-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Moros')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Phoenix')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Naglfar')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Revelation')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<br/>-->
-            <!--<div class="row" *ngIf="capConfigs">-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Thanatos')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Chimera')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Nidhoggur')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Archon')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<br/>-->
-            <!--<div class="row" *ngIf="capConfigs">-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Ninazu')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Minokawa')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Lif')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<jhi-hull-select [capConfig]="selectConf('Apostle')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<br/>-->
             <div class="row" *ngIf="capConfigs">
-                <div class="col-md-3">
-                    <jhi-hull-select [capConfig]="selectConf('Wyvern')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
-                </div>
-                <div class="col-md-3">
-                    <jhi-hull-select [capConfig]="selectConf('Hel')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
-                </div>
-                <div class="col-md-3">
-                    <jhi-hull-select [capConfig]="selectConf('Ragnarok')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
-                </div>
-                <div class="col-md-3">
-                    <jhi-hull-select [capConfig]="selectConf('Leviathan')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
-                </div>
-            </div>
-            <div class="row" *ngIf="capConfigs">
-                <div class="col-md-3">
-                    <jhi-hull-select [capConfig]="selectConf('Orca')" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
-                </div>
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-3">
-                </div>
+                <jhi-hull-select *ngFor="let capConfig of capConfigs; let i = index" [index]="i + 1" [capConfig]="selectConf(capConfig.typeName)" (selectedCap)="handleCapSelected($event)"></jhi-hull-select>
             </div>
         </div>
         <div *ngIf="pickedHull && !deliveryLocation">

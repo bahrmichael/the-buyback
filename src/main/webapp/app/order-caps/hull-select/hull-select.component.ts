@@ -9,6 +9,7 @@ import {CapConfig} from "../../entities/cap-config/cap-config.model";
 export class HullSelectComponent implements OnInit {
 
     @Input() capConfig: CapConfig;
+    @Input() index: number;
     @Output() selectedCap = new EventEmitter();
 
     constructor() {
