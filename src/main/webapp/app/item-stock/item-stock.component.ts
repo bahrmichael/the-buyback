@@ -80,6 +80,9 @@ export class ItemStockComponent implements OnInit, AfterViewInit {
                 elements: {
                     line: {
                         tension: 0
+                    },
+                    point:{
+                        radius: 0
                     }
                 },
                 responsive: true,
@@ -126,6 +129,9 @@ export class ItemStockComponent implements OnInit, AfterViewInit {
                 elements: {
                     line: {
                         tension: 0
+                    },
+                    point:{
+                        radius: 0
                     }
                 },
                 responsive: true,
