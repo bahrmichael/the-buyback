@@ -1,0 +1,50 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTypeBuybackRateLabel">Create or edit a Type Buyback Rate</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!typeBuybackRate.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="typeBuybackRate.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_typeId">Type Id</label>
+            <input type="number" class="form-control" name="typeId" id="field_typeId"
+                [(ngModel)]="typeBuybackRate.typeId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_typeName">Type Name</label>
+            <input type="text" class="form-control" name="typeName" id="field_typeName"
+                [(ngModel)]="typeBuybackRate.typeName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category</label>
+            <select class="form-control" name="category" [(ngModel)]="typeBuybackRate.category" id="field_category" >
+                <option value="COMPRESSED_ORE">COMPRESSED_ORE</option>
+                <option value="MOON_ORE">MOON_ORE</option>
+                <option value="ICE_PRODUCTS">ICE_PRODUCTS</option>
+                <option value="BIG_PLANETARY">BIG_PLANETARY</option>
+                <option value="GENERAL">GENERAL</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_rate">Rate</label>
+            <input type="number" class="form-control" name="rate" id="field_rate"
+                [(ngModel)]="typeBuybackRate.rate" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

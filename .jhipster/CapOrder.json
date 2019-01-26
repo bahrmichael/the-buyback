@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "recipient",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "typeId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deliveryLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryPrice",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "CapOrderStatus",
+            "fieldValues": "REQUESTED,INBUILD,COMPLETED"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "cap_order",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

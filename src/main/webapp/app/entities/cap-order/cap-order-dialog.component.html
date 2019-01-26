@@ -1,0 +1,70 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCapOrderLabel">Create or edit a Cap Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!capOrder.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="capOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_recipient">Recipient</label>
+            <input type="text" class="form-control" name="recipient" id="field_recipient"
+                [(ngModel)]="capOrder.recipient" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_typeId">Type Id</label>
+            <input type="number" class="form-control" name="typeId" id="field_typeId"
+                [(ngModel)]="capOrder.typeId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_typeName">Type Name</label>
+            <input type="text" class="form-control" name="typeName" id="field_typeName"
+                [(ngModel)]="capOrder.typeName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="capOrder.price" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_created">Created</label>
+            <div class="d-flex">
+                <input id="field_created" type="datetime-local" class="form-control" name="created" [(ngModel)]="capOrder.created"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_deliveryLocation">Delivery Location</label>
+            <input type="text" class="form-control" name="deliveryLocation" id="field_deliveryLocation"
+                [(ngModel)]="capOrder.deliveryLocation" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_deliveryPrice">Delivery Price</label>
+            <input type="number" class="form-control" name="deliveryPrice" id="field_deliveryPrice"
+                [(ngModel)]="capOrder.deliveryPrice" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="capOrder.status" id="field_status" >
+                <option value="REQUESTED">REQUESTED</option>
+                <option value="INBUILD">INBUILD</option>
+                <option value="COMPLETED">COMPLETED</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

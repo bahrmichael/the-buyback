@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span>Type Buyback Rates</span>
+        <button class="btn btn-primary float-right jh-create-entity create-type-buyback-rate" [routerLink]="['/', { outlets: { popup: ['type-buyback-rate-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Type Buyback Rate
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="typeBuybackRates">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeId"><span>Type Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeName"><span>Type Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="category"><span>Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rate"><span>Rate</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let typeBuybackRate of typeBuybackRates ;trackBy: trackId">
+                <td><a [routerLink]="['../type-buyback-rate', typeBuybackRate.id ]">{{typeBuybackRate.id}}</a></td>
+                <td>{{typeBuybackRate.typeId}}</td>
+                <td>{{typeBuybackRate.typeName}}</td>
+                <td>{{typeBuybackRate.category}}</td>
+                <td>{{typeBuybackRate.rate}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../type-buyback-rate', typeBuybackRate.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'type-buyback-rate/'+ typeBuybackRate.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'type-buyback-rate/'+ typeBuybackRate.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="typeBuybackRates && typeBuybackRates.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

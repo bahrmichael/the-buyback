@@ -1,0 +1,55 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "typeId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deliveryLocation1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryPrice1",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deliveryLocation2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryPrice2",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deliveryLocation3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryPrice3",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deliveryLocation4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryPrice4",
+            "fieldType": "Double"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "cap_config",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

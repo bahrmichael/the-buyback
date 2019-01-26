@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "typeId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "category",
+            "fieldType": "TypeCategory",
+            "fieldValues": "COMPRESSED_ORE,MOON_ORE,ICE_PRODUCTS,BIG_PLANETARY,GENERAL"
+        },
+        {
+            "fieldName": "rate",
+            "fieldType": "Double"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "type_buyback_rate",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
