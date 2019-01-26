@@ -1,0 +1,46 @@
+
+<div *ngIf="manufacturingOrder">
+    <h2><span>Manufacturing Order</span> {{manufacturingOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Price Per Unit</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.pricePerUnit}}</span>
+        </dd>
+        <dt><span>Type Name</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.typeName}}</span>
+        </dd>
+        <dt><span>Amount</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.amount}}</span>
+        </dd>
+        <dt><span>Instant</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.instant | date:'medium'}}</span>
+        </dd>
+        <dt><span>Assignee</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.assignee}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{manufacturingOrder.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'manufacturing-order/'+ manufacturingOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

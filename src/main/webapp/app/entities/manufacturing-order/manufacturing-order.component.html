@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Manufacturing Orders</span>
+        <button class="btn btn-primary float-right jh-create-entity create-manufacturing-order" [routerLink]="['/', { outlets: { popup: ['manufacturing-order-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Manufacturing Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="manufacturingOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pricePerUnit"><span>Price Per Unit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeName"><span>Type Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="amount"><span>Amount</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instant"><span>Instant</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="assignee"><span>Assignee</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span>Status</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let manufacturingOrder of manufacturingOrders ;trackBy: trackId">
+                <td><a [routerLink]="['../manufacturing-order', manufacturingOrder.id ]">{{manufacturingOrder.id}}</a></td>
+                <td>{{manufacturingOrder.pricePerUnit}}</td>
+                <td>{{manufacturingOrder.typeName}}</td>
+                <td>{{manufacturingOrder.amount}}</td>
+                <td>{{manufacturingOrder.instant | date:'medium'}}</td>
+                <td>{{manufacturingOrder.assignee}}</td>
+                <td>{{manufacturingOrder.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../manufacturing-order', manufacturingOrder.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'manufacturing-order/'+ manufacturingOrder.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'manufacturing-order/'+ manufacturingOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="manufacturingOrders && manufacturingOrders.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pricePerUnit",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "instant",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "assignee",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ManufacturingOrderStatus",
+            "fieldValues": "OPEN,IN_PROGRESS,COMPLETED,FAILED"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "manufacturing_order",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

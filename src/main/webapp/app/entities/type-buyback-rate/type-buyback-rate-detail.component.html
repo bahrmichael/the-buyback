@@ -1,0 +1,38 @@
+
+<div *ngIf="typeBuybackRate">
+    <h2><span>Type Buyback Rate</span> {{typeBuybackRate.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Type Id</span></dt>
+        <dd>
+            <span>{{typeBuybackRate.typeId}}</span>
+        </dd>
+        <dt><span>Type Name</span></dt>
+        <dd>
+            <span>{{typeBuybackRate.typeName}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <span>{{typeBuybackRate.category}}</span>
+        </dd>
+        <dt><span>Rate</span></dt>
+        <dd>
+            <span>{{typeBuybackRate.rate}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'type-buyback-rate/'+ typeBuybackRate.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

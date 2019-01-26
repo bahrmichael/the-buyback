@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span>Cap Orders</span>
+        <button class="btn btn-primary float-right jh-create-entity create-cap-order" [routerLink]="['/', { outlets: { popup: ['cap-order-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Cap Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="capOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="recipient"><span>Recipient</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeId"><span>Type Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeName"><span>Type Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="created"><span>Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deliveryLocation"><span>Delivery Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deliveryPrice"><span>Delivery Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span>Status</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let capOrder of capOrders ;trackBy: trackId">
+                <td><a [routerLink]="['../cap-order', capOrder.id ]">{{capOrder.id}}</a></td>
+                <td>{{capOrder.recipient}}</td>
+                <td>{{capOrder.typeId}}</td>
+                <td>{{capOrder.typeName}}</td>
+                <td>{{capOrder.price}}</td>
+                <td>{{capOrder.created | date:'medium'}}</td>
+                <td>{{capOrder.deliveryLocation}}</td>
+                <td>{{capOrder.deliveryPrice}}</td>
+                <td>{{capOrder.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../cap-order', capOrder.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cap-order/'+ capOrder.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cap-order/'+ capOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="capOrders && capOrders.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

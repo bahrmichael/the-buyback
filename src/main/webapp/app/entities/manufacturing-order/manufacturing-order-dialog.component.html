@@ -1,0 +1,61 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myManufacturingOrderLabel">Create or edit a Manufacturing Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!manufacturingOrder.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="manufacturingOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_pricePerUnit">Price Per Unit</label>
+            <input type="number" class="form-control" name="pricePerUnit" id="field_pricePerUnit"
+                [(ngModel)]="manufacturingOrder.pricePerUnit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_typeName">Type Name</label>
+            <input type="text" class="form-control" name="typeName" id="field_typeName"
+                [(ngModel)]="manufacturingOrder.typeName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="manufacturingOrder.amount" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_instant">Instant</label>
+            <div class="d-flex">
+                <input id="field_instant" type="datetime-local" class="form-control" name="instant" [(ngModel)]="manufacturingOrder.instant"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_assignee">Assignee</label>
+            <input type="text" class="form-control" name="assignee" id="field_assignee"
+                [(ngModel)]="manufacturingOrder.assignee" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="manufacturingOrder.status" id="field_status" >
+                <option value="OPEN">OPEN</option>
+                <option value="IN_PROGRESS">IN_PROGRESS</option>
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="FAILED">FAILED</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

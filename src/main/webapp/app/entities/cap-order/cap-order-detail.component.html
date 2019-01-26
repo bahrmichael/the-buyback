@@ -1,0 +1,54 @@
+
+<div *ngIf="capOrder">
+    <h2><span>Cap Order</span> {{capOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Recipient</span></dt>
+        <dd>
+            <span>{{capOrder.recipient}}</span>
+        </dd>
+        <dt><span>Type Id</span></dt>
+        <dd>
+            <span>{{capOrder.typeId}}</span>
+        </dd>
+        <dt><span>Type Name</span></dt>
+        <dd>
+            <span>{{capOrder.typeName}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{capOrder.price}}</span>
+        </dd>
+        <dt><span>Created</span></dt>
+        <dd>
+            <span>{{capOrder.created | date:'medium'}}</span>
+        </dd>
+        <dt><span>Delivery Location</span></dt>
+        <dd>
+            <span>{{capOrder.deliveryLocation}}</span>
+        </dd>
+        <dt><span>Delivery Price</span></dt>
+        <dd>
+            <span>{{capOrder.deliveryPrice}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{capOrder.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cap-order/'+ capOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

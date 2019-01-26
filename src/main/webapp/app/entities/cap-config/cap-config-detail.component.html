@@ -1,0 +1,66 @@
+
+<div *ngIf="capConfig">
+    <h2><span>Cap Config</span> {{capConfig.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Type Id</span></dt>
+        <dd>
+            <span>{{capConfig.typeId}}</span>
+        </dd>
+        <dt><span>Type Name</span></dt>
+        <dd>
+            <span>{{capConfig.typeName}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{capConfig.price}}</span>
+        </dd>
+        <dt><span>Delivery Location 1</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryLocation1}}</span>
+        </dd>
+        <dt><span>Delivery Price 1</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryPrice1}}</span>
+        </dd>
+        <dt><span>Delivery Location 2</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryLocation2}}</span>
+        </dd>
+        <dt><span>Delivery Price 2</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryPrice2}}</span>
+        </dd>
+        <dt><span>Delivery Location 3</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryLocation3}}</span>
+        </dd>
+        <dt><span>Delivery Price 3</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryPrice3}}</span>
+        </dd>
+        <dt><span>Delivery Location 4</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryLocation4}}</span>
+        </dd>
+        <dt><span>Delivery Price 4</span></dt>
+        <dd>
+            <span>{{capConfig.deliveryPrice4}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cap-config/'+ capConfig.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

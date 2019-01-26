@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Cap Configs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-cap-config" [routerLink]="['/', { outlets: { popup: ['cap-config-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Cap Config
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="capConfigs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Type Id</span></th>
+            <th><span>Type Name</span></th>
+            <th><span>Price</span></th>
+            <th><span>Delivery Location 1</span></th>
+            <th><span>Delivery Price 1</span></th>
+            <th><span>Delivery Location 2</span></th>
+            <th><span>Delivery Price 2</span></th>
+            <th><span>Delivery Location 3</span></th>
+            <th><span>Delivery Price 3</span></th>
+            <th><span>Delivery Location 4</span></th>
+            <th><span>Delivery Price 4</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let capConfig of capConfigs ;trackBy: trackId">
+                <td><a [routerLink]="['../cap-config', capConfig.id ]">{{capConfig.id}}</a></td>
+                <td>{{capConfig.typeId}}</td>
+                <td>{{capConfig.typeName}}</td>
+                <td>{{capConfig.price}}</td>
+                <td>{{capConfig.deliveryLocation1}}</td>
+                <td>{{capConfig.deliveryPrice1}}</td>
+                <td>{{capConfig.deliveryLocation2}}</td>
+                <td>{{capConfig.deliveryPrice2}}</td>
+                <td>{{capConfig.deliveryLocation3}}</td>
+                <td>{{capConfig.deliveryPrice3}}</td>
+                <td>{{capConfig.deliveryLocation4}}</td>
+                <td>{{capConfig.deliveryPrice4}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../cap-config', capConfig.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cap-config/'+ capConfig.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cap-config/'+ capConfig.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
