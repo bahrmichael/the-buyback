@@ -61,7 +61,7 @@ public class DatabaseConfiguration {
         // package to scan for migrations
         mongobee.setChangeLogsScanPackage("com.thebuyback.eve.config.dbmigrations");
         mongobee.setEnabled(true);
-        mongobee.setDbName("the-buyback");
+        mongobee.setDbName("eve-dashboard");
         return mongobee;
     }
 
