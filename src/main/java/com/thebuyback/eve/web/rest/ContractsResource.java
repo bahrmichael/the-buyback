@@ -202,6 +202,7 @@ public class ContractsResource {
                                            contract.isDeclineMailSent(),
                                            contract.isApproved(),
                                            contract.getBuybackPrice(),
-                                           contract.getAppraisalLink());
+                                           contract.getAppraisalLink(),
+                                           contract.isAcceptedLocation());
     }
 }

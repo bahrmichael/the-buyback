@@ -20,13 +20,16 @@ public class ContractDTO {
     private boolean approved;
     private Double buybackPrice;
     private String appraisalLink;
+    private boolean acceptedLocation;
 
     public ContractDTO() {
     }
 
-    public ContractDTO(final long id, final String client, final Instant created, final double price, final double reward,
-                       final double jitaBuy, final double jitaSell, final boolean declineMailSent, final boolean approved,
-                       final Double buybackPrice, final String appraisalLink) {
+    public ContractDTO(final long id, final String client, final Instant created, final double price,
+                       final double reward,
+                       final double jitaBuy, final double jitaSell, final boolean declineMailSent,
+                       final boolean approved,
+                       final Double buybackPrice, final String appraisalLink, final boolean acceptedLocation) {
         this.id = id;
         this.client = client;
         this.created = created;
@@ -38,6 +41,15 @@ public class ContractDTO {
         this.approved = approved;
         this.buybackPrice = buybackPrice;
         this.appraisalLink = appraisalLink;
+        this.acceptedLocation = acceptedLocation;
+    }
+
+    public boolean isAcceptedLocation() {
+        return acceptedLocation;
+    }
+
+    public void setAcceptedLocation(final boolean acceptedLocation) {
+        this.acceptedLocation = acceptedLocation;
     }
 
     public double getJitaSell() {

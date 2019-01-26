@@ -59,6 +59,7 @@
                     <br />
                     Please accept it ingame.
                 </div>
+                <div class="alert alert-warning" *ngIf="!contract.acceptedLocation">This contract seems to be from a bad structure.</div>
             </td>
             <td *ngIf="contract.reward">
                 <div *ngIf="(1 - (contract.jitaSell / contract.reward)) > 0.03 && contract.reward > 0" class="alert alert-danger">
