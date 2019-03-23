@@ -1,6 +1,6 @@
 package com.thebuyback.eve.domain;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +12,7 @@ public class TypeIngredients {
     private String id;
     private long typeId;
     private int quantityToReprocess;
-    private Map<Long, Integer> ingredients;
+    private List<ItemWithQuantity> ingredients;
 
     public String getId() {
         return id;
@@ -38,11 +38,11 @@ public class TypeIngredients {
         this.typeId = typeId;
     }
 
-    public Map<Long, Integer> getIngredients() {
+    public List<ItemWithQuantity> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(final Map<Long, Integer> ingredients) {
+    public void setIngredients(final List<ItemWithQuantity> ingredients) {
         this.ingredients = ingredients;
     }
 }
