@@ -193,7 +193,7 @@ public class JsonRequestService {
     }
 
     Optional<JsonNode> getCharacterName(final long characterId) {
-        String url = "https://esi.evetech.net/v2/universe/names/";
+        String url = "https://esi.evetech.net/v3/universe/names/";
         final RequestBodyEntity request = Unirest.post(url).headers(defaultHeaders).body(singletonList(characterId));
         return executeRequest(request, "characterName");
     }
